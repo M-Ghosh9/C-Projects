@@ -1,0 +1,34 @@
+class PatientData {
+private:
+    float* ecgData;
+    size_t dataSize;
+
+public:
+    // Constructor for dynamic memory allocation
+    PatientData(size_t size) {
+        dataSize = size;
+        ecgData = new float[dataSize];
+        std::cout << "Memory allocated for ECG data of size " << dataSize << std::endl;
+    }
+
+    // Destructor for releasing memory
+    ~PatientData() {
+        delete[] ecgData;
+        std::cout << "Memory deallocated for ECG data." << std::endl;
+    }
+
+    // Simulate adding ECG data
+    void addECGData(size_t index, float value) {
+        if (index < dataSize) {
+            ecgData[index] = value;
+        }
+    }
+
+    // Simulate fetching ECG data
+    float getECGData(size_t index) {
+        if (index < dataSize) {
+            return ecgData[index];
+        }
+        return -1; // Error value
+    }
+};
