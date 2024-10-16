@@ -1,0 +1,27 @@
+#include <iostream>
+#include <memory>
+#include <vector>
+
+class MemoryManager {
+public:
+    // Using raw pointers for manual memory management
+    PatientData* allocatePatientData(size_t size) {
+        return new PatientData(size);
+    }
+
+    // Deallocate memory manually
+    void deallocatePatientData(PatientData* data) {
+        delete data;
+    }
+
+    // Using smart pointers to automatically manage memory
+    std::shared_ptr<PatientData> allocateSmartPatientData(size_t size) {
+        return std::make_shared<PatientData>(size);
+    }
+
+    // Simulate a memory leak scenario
+    void simulateMemoryLeak(size_t size) {
+        float* leakedData = new float[size]; // Deliberately not freeing memory
+        std::cout << "Memory leaked for size " << size << std::endl;
+    }
+};
