@@ -1,0 +1,13 @@
+#include <algorithm>
+
+class ECGProcessor {
+public:
+    // Process ECG data (simple normalization example)
+    void normalizeData(float* ecgData, size_t size) {
+        float maxVal = *std::max_element(ecgData, ecgData + size);
+        for (size_t i = 0; i < size; ++i) {
+            ecgData[i] /= maxVal;
+        }
+        std::cout << "ECG data normalized." << std::endl;
+    }
+};
