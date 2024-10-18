@@ -1,0 +1,22 @@
+int main() {
+    MemoryManager memManager;
+    ECGProcessor ecgProcessor;
+
+    // Allocate memory manually for one patient
+    PatientData* patient1 = memManager.allocatePatientData(100);
+    patient1->addECGData(0, 1.23);
+    ecgProcessor.normalizeData(patient1->getECGData(0), 100);
+
+    // Deallocate memory manually
+    memManager.deallocatePatientData(patient1);
+
+    // Allocate memory using smart pointers for another patient
+    auto patient2 = memManager.allocateSmartPatientData(200);
+    patient2->addECGData(0, 2.34);
+    ecgProcessor.normalizeData(patient2->getECGData(0), 200);
+
+    // Simulate a memory leak
+    memManager.simulateMemoryLeak(500);
+
+    return 0;
+}
